@@ -11,7 +11,7 @@ module Text
         2 = Blue \n
         3 = Red \n
         4 = Yellow \n
-        5 = Purple \n
+        5 = magenta \n
         6 = Cyan \n
         "
     end
@@ -26,6 +26,7 @@ module Text
         D) If the CodeBreaker does not break the code after ten rounds
         the MasterMind wins one point, else the CodeBreaker wins the point"
         E) At the end of the Round, roles should be reversed.
+        F) No duplicated number on any code, to keep it easy (but to make the code harder for me)
         HEREDOC
     end
 
@@ -35,7 +36,25 @@ module Text
 
     #methods text
     def update_the_board_text
-        puts "Choose your code"
+        puts "Choose your numbers, CodeBreaker"
     end
 
+
+    #color_method
+    def printing_with_color(string)
+    case string
+        when "1"
+        print " 1 ".on_green
+        when "2"
+        print " 2 ".on_blue
+        when "3"
+        print " 3 ".on_red
+        when "4"
+        print " 4 ".on_yellow
+        when "5"
+        print " 5 ".on_magenta
+        when "6"
+        print " 6 ".on_cyan
+    end
+    end
 end

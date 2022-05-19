@@ -55,6 +55,7 @@ class Game
         @player2= nil
         @code_breaker=nil
         @master_code=[]
+        @turn_number= 0
     end
 
 #basic methods
@@ -67,11 +68,19 @@ def computer_master_code
     @master_code = [] if @master_code.length == 4
     until @master_code.length == 4 do
         number = random_number
-        @master_code.push(number) if number != 0
+        @master_code.push(number.to_s) if number != 0
         @master_code.uniq!
     end
 end
 
+def codebreaker_answer
+    answer = gets.chomp.split("")
+    if
+        puts "Choose only between 1 & 6"
+    answer.each do |str|
+        printing_with_color(str)
+    end
+end
     
 def choosing_role
     select_your_rol_text
