@@ -75,8 +75,12 @@ end
 
 def codebreaker_answer
     answer = gets.chomp.split("")
-    if
-        puts "Choose only between 1 & 6"
+    if answer.any? { | x | x == "0"|| x == "7" || x == "8" || x == "9"}
+        #if cointains a number == 0 or between 7,9
+        puts "Choose only between 1 & 6!"
+    elsif answer.uniq!.length != 4
+        puts "No duplicates please"
+    else
     answer.each do |str|
         printing_with_color(str)
     end
