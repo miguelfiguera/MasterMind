@@ -11,6 +11,8 @@ class Player
 end
 
 #board display and interaction
+#I think I do not need a board this time...
+# just players, puts and turns...
 
 class Board 
     attr_reader :dot, :turn
@@ -71,6 +73,15 @@ def computer_master_code
 end
 
     
-     
+def choosing_role
+    select_your_rol_text
+    answer = gets.chomp.downcase
+    if answer == "m"
+        @code_breaker = @player2
+    elsif answer == "c"
+        @code_breaker = @player1
+    end
+end
+
 
 #compound methods
