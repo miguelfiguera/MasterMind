@@ -1,7 +1,9 @@
 require_relative "text_module.rb"
+require "colorize"
 
 # player creation
 class Player 
+    attr_reader :name,:rol
     def initialize(name,rol)
         @name=name
         @rol=rol
@@ -43,3 +45,32 @@ end
 
 
 #Game Mechanics
+class Game
+    attr_reader :board,:player1,:player2,:code_breaker,:master_code
+    def initialize
+        @board = Board.new
+        @player1=nil
+        @player2= nil
+        @code_breaker=nil
+        @master_code=[]
+    end
+
+#basic methods
+
+def random_number
+    number=(rand*7).to_i
+end
+
+def computer_master_code
+    @master_code = [] if @master_code.length == 4
+    until @master_code.length == 4 do
+        number = random_number
+        @master_code.push(number) if number != 0
+        @master_code.uniq!
+    end
+end
+
+    
+     
+
+#compound methods

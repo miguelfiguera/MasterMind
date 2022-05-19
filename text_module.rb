@@ -35,5 +35,7 @@ module Text
 
     #methods text
     def update_the_board_text
-        puts "Choose your colors"
+        puts "Choose your code"
     end
+
+end
