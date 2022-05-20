@@ -1,5 +1,6 @@
 require_relative "text_module.rb"
 require "colorize"
+require "pry"
 
 # player creation
 class Player 
@@ -80,8 +81,8 @@ def clue_output
     end
 end
 
-def winning(answer)
-    answer.eql?(@master_code)
+def winning
+    @answer.eql?(@master_code)
 end
 
 def defeat 
@@ -98,16 +99,43 @@ def create_computer
     player=Player.new("Computer")
 end
 
+def victory_real
+    if @player1.points == 3
+        puts "Congratz! You have won the game"
+    elsif @player2.points == 3
+        puts "Computer has won the game! Best luck next time..."
+    end
+end
+
 
 #compound methods
-def evaluating
+
+def point_distribution
+    case points
+    when winning && @code_breaker==@player1
+        @player1.points += 1
+        victory_text
+    when defeat && @code_breaker == @player1
+        @player2.points += 1
+        defeat_text
+    when defeat && @code_breaker == @player2
+        @player1.points += 1
+        defeat_text_computer
+    when winning && @code_breaker==@player2
+        @player2.points += 1
+        victory_text_computer
+    end
 end
 
 def human_codebreaker_turns
+    until defeat do
+        codebreaker_answer
+        break if winning
+    end
 end
 
-def computer_codebreaker_turns
-end
+#def computer_codebreaker_turns
+#end
 
 def game_prep
     the_welcome_text

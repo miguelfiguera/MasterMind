@@ -56,8 +56,12 @@ module Text
         puts "CodeBreaker was unable to guess, MasterMind have won!"
     end
 
-    def round_winner_text(player)
-        "This round goes to #{player}"
+    def victory_text_computer
+        puts "The computer broke your code... best luck next time!"
+    end
+
+    def defeat_text_computer
+        puts "Computer could not break your code, well done MasterMind!"
     end
 
 
