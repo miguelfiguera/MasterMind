@@ -56,7 +56,7 @@ def codebreaker_answer
 end
 
 def turn_update
-    @turn: += 1
+    @turn += 1
 end
     
 def choosing_role
@@ -129,6 +129,8 @@ end
 
 def human_codebreaker_turns
     until defeat do
+        the_turn_number_text(@turn)
+        update_the_board_text
         codebreaker_answer
         break if winning
     end
@@ -150,3 +152,4 @@ def creating_players
 end
 
 #computer as CodeBreaker
+end

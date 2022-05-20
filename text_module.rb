@@ -1,6 +1,6 @@
-#frozen_string_literals: true
 module Text 
     #Welcome, rules and explanations
+
     def the_welcome_text
         puts "Welcome, lets play MasterMind on the console, shall we?"
     end
@@ -17,7 +17,8 @@ module Text
     end
 
     def rules_text
-        puts <<-HEREDOC "Rules are simple:
+        puts <<-HEREDOC 
+        Rules are simple:
         A) Choose your rol (MasterMind or CodeBreaker)
         B) If you choose CodeBreaker, you have ten rounds to break the code.
         C) Each round you will have a automatic feedback:
@@ -26,15 +27,18 @@ module Text
         D) If the CodeBreaker does not break the code after ten rounds
         the MasterMind wins one point, else the CodeBreaker wins the point"
         E) At the end of the Round, roles should be reversed.
-        F) No duplicated number on any code, to keep it easy (but to make the code harder for me)
+        F) No duplicated number on any code, to keep it easy (but to make the code harder for me).
+
         HEREDOC
     end
+
 
     def select_your_rol_text
         puts "What do you want to be? MasterMind (M) or CodeBreaker(C)?"   
     end
 
     #methods text
+    
     def update_the_board_text
         puts "Choose your numbers, CodeBreaker"
     end
@@ -48,6 +52,7 @@ module Text
     end
 
     #Victory and Defeat
+
     def victory_text
         puts "You have won, Codebreaker!"
     end
