@@ -88,8 +88,37 @@ def defeat
     @turn== 12
 end
 
-def evaluating
-
+def create_player
+    whats_your_name
+    name=gets.chomp
+    player=Player.new(name)
 end
 
+def create_computer
+    player=Player.new("Computer")
+end
+
+
 #compound methods
+def evaluating
+end
+
+def human_codebreaker_turns
+end
+
+def computer_codebreaker_turns
+end
+
+def game_prep
+    the_welcome_text
+    rules_text
+    colors_text
+    choosing_role
+end
+
+def creating_players
+    @player1=create_player
+    @player2=create_computer
+end
+
+#computer as CodeBreaker

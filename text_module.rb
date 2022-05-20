@@ -43,6 +43,10 @@ module Text
         puts "This is the turn ##{number}."
     end
 
+    def whats_your_name
+        puts "How should I call you?"
+    end
+
     #Victory and Defeat
     def victory_text
         puts "You have won, Codebreaker!"
