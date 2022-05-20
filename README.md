@@ -35,3 +35,34 @@ class Board
         @turn += 1
     end
 end
+
+
+#other stuff
+
+def random_number
+    number=(rand*7).to_i
+end
+
+def computer_master_code
+    @master_code = [] if @master_code.length == 4
+    until @master_code.length == 4 do
+        number = random_number
+        @master_code.push(number.to_s) if number != 0
+        @master_code.uniq!
+    end
+end
+
+@master_code = []
+
+answer = gets.chomp.split("")
+
+
+
+#learning how to compare
+irb(main):054:1* answer.each do |x|
+irb(main):055:2*   @master_code.each do |m|
+irb(main):056:2*     puts x
+irb(main):057:2*     puts m
+irb(main):058:2*     puts  m.eql?(x)
+irb(main):059:1*   end
+irb(main):060:0> end

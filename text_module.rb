@@ -49,7 +49,7 @@ module Text
     end
 
     def defeat_text
-        puts "You have won, MasterMind!"
+        puts "CodeBreaker was unable to guess, MasterMind have won!"
     end
 
     def round_winner_text(player)
