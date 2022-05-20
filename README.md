@@ -38,6 +38,8 @@ end
 
 
 #other stuff
+require "pry"
+require "colorize"
 
 def random_number
     number=(rand*7).to_i
@@ -54,7 +56,43 @@ end
 
 @master_code = []
 
-answer = gets.chomp.split("")
+@answer = gets.chomp.split("")
+
+computer_master_code
+
+    def color_clues(number)
+        if number == 1
+            print " o ".black
+        elsif number == 0
+            print " o ".white
+        end
+    end
+
+
+def clue_output
+    @master_code.each_with_index do |m,i|
+        @answer.each_with_index do |a,ix|
+        if a == m && i == ix
+        color_clues(0)
+        elsif a == m && i!=ix
+        color_clues(1)
+        end
+        end
+    end
+end
+
+def evaluating2(answer)
+    @master_code.each_with_index do |m,i|
+        answer.each_with_index do |a,ix|
+        binding.pry
+        if a == m && i == ix
+        print 0
+        elsif a == m && i!=ix
+        print 1
+        end
+        end
+    end
+end
 
 
 

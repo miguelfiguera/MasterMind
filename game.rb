@@ -13,13 +13,14 @@ end
 
 #Game Mechanics
 class Game
-    attr_reader :player1,:player2,:code_breaker,:master_code
+    attr_reader :player1,:answer,:player2,:code_breaker,:master_code
     def initialize
         @player1=nil
         @player2= nil
         @code_breaker=nil
         @master_code=[]
         @turn= 0
+        @answer = []
     end
 
 #basic methods
@@ -38,7 +39,7 @@ def computer_master_code
 end
 
 def codebreaker_answer
-    answer = gets.chomp.split("")
+    @answer = gets.chomp.split("")
     if answer.any? { | x | x == "0"|| x == "7" || x == "8" || x == "9"}
         puts "Choose only between 1 & 6!"
         codebreaker_answer
@@ -46,7 +47,7 @@ def codebreaker_answer
         puts "No duplicates please"
         codebreaker_answer
     else
-      answer.each do |str|
+      @answer.each do |str|
         printing_with_color(str)
       end
     turn_update
@@ -67,7 +68,16 @@ def choosing_role
     end
 end
 
-def clue_output(answer)
+def clue_output
+    @master_code.each_with_index do |m,i|
+        @answer.each_with_index do |a,ix|
+        if a == m && i == ix
+        color_clues(0)
+        elsif a == m && i!=ix
+        color_clues(1)
+        end
+        end
+    end
 end
 
 def winning(answer)
@@ -78,6 +88,8 @@ def defeat
     @turn== 12
 end
 
+def evaluating
 
+end
 
 #compound methods

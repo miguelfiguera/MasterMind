@@ -21,8 +21,8 @@ module Text
         A) Choose your rol (MasterMind or CodeBreaker)
         B) If you choose CodeBreaker, you have ten rounds to break the code.
         C) Each round you will have a automatic feedback:
-        Black points = Right color and right position
-        White Points = Right color and Wrong position
+        White points = Right color and right position
+        Black Points = Right color and Wrong position
         D) If the CodeBreaker does not break the code after ten rounds
         the MasterMind wins one point, else the CodeBreaker wins the point"
         E) At the end of the Round, roles should be reversed.
@@ -74,4 +74,13 @@ module Text
         print " 6 ".on_cyan
     end
     end
+
+    def color_clues(number)
+        if number == 1
+            print " o ".black
+        elsif number == 0
+            print " o ".white
+        end
+    end
+
 end
