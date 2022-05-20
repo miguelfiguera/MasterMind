@@ -3,10 +3,9 @@ require "colorize"
 
 # player creation
 class Player 
-    attr_reader :name,:rol
-    def initialize(name,rol)
+    attr_reader :name
+    def initialize(name)
         @name=name
-        @rol=rol
     end
 end
 
@@ -48,14 +47,13 @@ end
 
 #Game Mechanics
 class Game
-    attr_reader :board,:player1,:player2,:code_breaker,:master_code
+    attr_reader :player1,:player2,:code_breaker,:master_code
     def initialize
-        @board = Board.new
         @player1=nil
         @player2= nil
         @code_breaker=nil
         @master_code=[]
-        @turn_number= 0
+        @turn= 0
     end
 
 #basic methods
@@ -74,16 +72,25 @@ def computer_master_code
 end
 
 def codebreaker_answer
+    the_turn_number_text(@turn)
+    update_the_board_text
     answer = gets.chomp.split("")
     if answer.any? { | x | x == "0"|| x == "7" || x == "8" || x == "9"}
-        #if cointains a number == 0 or between 7,9
         puts "Choose only between 1 & 6!"
+        codebreaker_answer
     elsif answer.uniq!.length != 4
         puts "No duplicates please"
+        codebreaker_answer
     else
-    answer.each do |str|
+      answer.each do |str|
         printing_with_color(str)
+      end
+    turn_update
     end
+end
+
+def turn_update
+    @turn: += 1
 end
     
 def choosing_role
