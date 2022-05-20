@@ -39,6 +39,23 @@ module Text
         puts "Choose your numbers, CodeBreaker"
     end
 
+    def the_turn_number_text(number)
+        puts "This is the turn ##{number}."
+    end
+
+    #Victory and Defeat
+    def victory_text
+        puts "You have won, Codebreaker!"
+    end
+
+    def defeat_text
+        puts "You have won, MasterMind!"
+    end
+
+    def round_winner_text(player)
+        "This round goes to #{player}"
+    end
+
 
     #color_method
     def printing_with_color(string)

@@ -3,9 +3,10 @@ require "colorize"
 
 # player creation
 class Player 
-    attr_reader :name
+    attr_reader :name,:points
     def initialize(name)
         @name=name
+        @points= 0
     end
 end
 
@@ -101,6 +102,16 @@ def choosing_role
     elsif answer == "c"
         @code_breaker = @player1
     end
+end
+
+def clue_output(answer)
+end
+
+def winning(answer)
+    if answer.eql?(@master_code)
+        victory_text
+    elsif @turn == 12
+
 end
 
 
