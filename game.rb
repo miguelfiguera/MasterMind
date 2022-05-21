@@ -5,6 +5,7 @@ require "pry"
 # player creation
 class Player 
     attr_reader :name,:points
+    attr_writer :points
     def initialize(name)
         @name=name
         @points= 0
@@ -16,6 +17,7 @@ end
 class Game
     attr_reader :player1,:answer,:player2,:code_breaker,:master_code
     include Text
+
     def initialize
         @player1=nil
         @player2= nil
@@ -26,6 +28,8 @@ class Game
     end
 
 #basic methods
+
+public
 
 def random_number
     number=(rand*7).to_i
@@ -40,6 +44,13 @@ def computer_master_code
     end
 end
 
+def answer_printing
+    @answer.each do |str|
+        printing_with_color(str)
+    end
+end
+
+
 def codebreaker_answer
     binding.pry
     @answer = gets.chomp.split("")
@@ -50,8 +61,7 @@ def codebreaker_answer
         puts "No duplicates please"
         codebreaker_answer
     else
-      @answer.each do |str|
-        printing_with_color(str)
+        answer_printing
       end
     turn_update
     end
@@ -102,15 +112,16 @@ def create_computer
 end
 
 def victory_real
-    if @player1.points == 3
-        puts "Congratz! You have won the game"
-    elsif @player2.points == 3
-        puts "Computer has won the game! Best luck next time..."
-    end
+    @player1.points == 3
+end
+
+def defeat_real
+    @player2.points==3
 end
 
 
 #compound methods
+public
 
 def point_distribution_human
     if winning
@@ -130,9 +141,6 @@ def human_codebreaker_turns
     end
 end
 
-#def computer_codebreaker_turns
-#end
-
 def creating_players
     @player1=create_player
     @player2=create_computer
@@ -145,8 +153,41 @@ def game_prep
     colors_text
 end
 
+    #computer as CodeBreaker
 
-
-#end of class
-end
-#computer as CodeBreaker
+    def human_master_code
+        binding.pry
+        answer=gets.chomp.split("")
+        @master_code=answer
+    end
+    
+    def computer_guess
+        @answer = [] if @answer.length == 4
+         until @answer.uniq.length == 4 do
+            number = random_number
+            @answer.push(number) if number != 0
+            @answer.uniq!
+         end
+         answer_printing
+         turn_update
+    end
+    
+    def computer_codebreaker_turns
+        until defeat do
+            the_turn_number_text(@turn)
+            update_the_board_text
+            computer_guess
+            clue_output
+            break if winning
+        end
+    end
+    
+    def computer_points_distribution
+        if winning
+            @player2.points += 1
+        elsif defeat
+            @player1.points += 1
+        end
+    end
+    
+    #end of class

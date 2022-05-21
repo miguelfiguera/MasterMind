@@ -1,14 +1,32 @@
 require_relative 'game'
 require_relative 'text_module'
+require "pry"
+
 
 def game
   game = Game.new
   game.game_prep
-  #this master code crap should be with a conditional "If player is codebreaker"
-  game.computer_master_code
   game.creating_players
-  game.human_codebreaker_turns
-  game.victory_real
+  binding.pry
+  if game.code_breaker == game.player1
+    game.computer_master_code
+    game.human_codebreaker_turns
+    game.point_distribution_human
+        if game.victory_real
+            puts game.victory_text
+        elsif game.defeat_real
+             puts "Computer wins this time!"
+        end
+  elsif game.code_breaker == game.player2
+    game.human_master_code
+    game.computer_codebreaker_turns
+    game.computer_points_distribution
+        if game.victory_real
+            puts game.victory_text
+        elsif defeat_real
+            puts "Computer wins this time!"
+        end
+  end
   repeat
 end
 
