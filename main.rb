@@ -7,7 +7,6 @@ def game
   game = Game.new
   game.game_prep
   game.creating_players
-  binding.pry
   if game.code_breaker == game.player1
     game.computer_master_code
     game.human_codebreaker_turns

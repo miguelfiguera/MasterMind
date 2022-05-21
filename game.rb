@@ -156,7 +156,6 @@ end
     #computer as CodeBreaker
 
     def human_master_code
-        binding.pry
         answer=gets.chomp.split("")
         @master_code=answer
     end
@@ -165,7 +164,7 @@ end
         @answer = [] if @answer.length == 4
          until @answer.uniq.length == 4 do
             number = random_number
-            @answer.push(number) if number != 0
+            @answer.push(number.to_s) if number != 0
             @answer.uniq!
          end
          answer_printing
