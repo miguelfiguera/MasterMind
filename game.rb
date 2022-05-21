@@ -154,6 +154,8 @@ def game_prep
 end
 
     #computer as CodeBreaker
+    
+    public
 
     def human_master_code
         answer=gets.chomp.split("")
