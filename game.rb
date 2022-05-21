@@ -15,12 +15,13 @@ end
 #Game Mechanics
 class Game
     attr_reader :player1,:answer,:player2,:code_breaker,:master_code
+    include Text
     def initialize
         @player1=nil
         @player2= nil
         @code_breaker=nil
         @master_code=[]
-        @turn= 0
+        @turn= 1
         @answer = []
     end
 
@@ -40,11 +41,12 @@ def computer_master_code
 end
 
 def codebreaker_answer
+    binding.pry
     @answer = gets.chomp.split("")
-    if answer.any? { | x | x == "0"|| x == "7" || x == "8" || x == "9"}
+    if @answer.any? { | x | x == "0"|| x == "7" || x == "8" || x == "9"}
         puts "Choose only between 1 & 6!"
         codebreaker_answer
-    elsif answer.uniq!.length != 4
+    elsif @answer.uniq.length != 4
         puts "No duplicates please"
         codebreaker_answer
     else
@@ -110,20 +112,11 @@ end
 
 #compound methods
 
-def point_distribution
-    case points
-    when winning && @code_breaker==@player1
+def point_distribution_human
+    if winning
         @player1.points += 1
-        victory_text
-    when defeat && @code_breaker == @player1
+    elsif defeat
         @player2.points += 1
-        defeat_text
-    when defeat && @code_breaker == @player2
-        @player1.points += 1
-        defeat_text_computer
-    when winning && @code_breaker==@player2
-        @player2.points += 1
-        victory_text_computer
     end
 end
 
@@ -132,6 +125,7 @@ def human_codebreaker_turns
         the_turn_number_text(@turn)
         update_the_board_text
         codebreaker_answer
+        clue_output
         break if winning
     end
 end
@@ -139,17 +133,20 @@ end
 #def computer_codebreaker_turns
 #end
 
+def creating_players
+    @player1=create_player
+    @player2=create_computer
+    choosing_role
+end
+
 def game_prep
     the_welcome_text
     rules_text
     colors_text
-    choosing_role
 end
 
-def creating_players
-    @player1=create_player
-    @player2=create_computer
-end
 
+
+#end of class
+end
 #computer as CodeBreaker
-end
