@@ -131,6 +131,15 @@ end
 #compound methods
 public
 
+def evaluation
+    if winning
+        victory_text
+    elsif defeat
+        defeat_text
+    end
+end
+    
+
 def point_distribution_human
     if winning
         @player1.points += 1

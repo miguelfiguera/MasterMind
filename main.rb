@@ -13,6 +13,7 @@ def game
       game.computer_master_code
       game.human_codebreaker_turns
       game.point_distribution_human
+      game.evaluation
       game.swap_status
       game.swap_to_mastermind_text
       game.reset_turns
@@ -20,6 +21,7 @@ def game
       game.human_master_code
       game.computer_codebreaker_turns
       game.computer_points_distribution
+      game.evaluation
       game.swap_status
       game.swap_codebreaker_text
       game.reset_turns
