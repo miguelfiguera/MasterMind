@@ -15,7 +15,7 @@ end
 
 #Game Mechanics
 class Game
-    attr_reader :player1,:answer,:player2,:code_breaker,:master_code
+    attr_reader :turn, :player1,:answer,:player2,:code_breaker,:master_code
     include Text
 
     def initialize
@@ -52,7 +52,6 @@ end
 
 
 def codebreaker_answer
-    binding.pry
     @answer = gets.chomp.split("")
     if @answer.any? { | x | x == "0"|| x == "7" || x == "8" || x == "9"}
         puts "Choose only between 1 & 6!"
@@ -62,8 +61,7 @@ def codebreaker_answer
         codebreaker_answer
     else
         answer_printing
-      end
-    turn_update
+        turn_update
     end
 end
 
@@ -91,6 +89,7 @@ def clue_output
         end
         end
     end
+    puts ""
 end
 
 def winning
@@ -98,7 +97,7 @@ def winning
 end
 
 def defeat 
-    @turn== 12
+    @turn == 11
 end
 
 def create_player
@@ -111,6 +110,8 @@ def create_computer
     player=Player.new("Computer")
 end
 
+public
+
 def victory_real
     @player1.points == 3
 end
@@ -119,6 +120,13 @@ def defeat_real
     @player2.points==3
 end
 
+def swap_status
+    if @code_breaker==@player1
+        @code_breaker=@player2
+    else
+        @code_breaker=@player1
+    end
+end
 
 #compound methods
 public
@@ -129,6 +137,10 @@ def point_distribution_human
     elsif defeat
         @player2.points += 1
     end
+end
+
+def reset_turns
+    @turn = 1
 end
 
 def human_codebreaker_turns
@@ -158,6 +170,7 @@ end
     public
 
     def human_master_code
+        human_master_code_text
         answer=gets.chomp.split("")
         @master_code=answer
     end
@@ -192,3 +205,4 @@ end
     end
     
     #end of class
+end

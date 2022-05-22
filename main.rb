@@ -7,24 +7,24 @@ def game
   game = Game.new
   game.game_prep
   game.creating_players
-  if game.code_breaker == game.player1
-    game.computer_master_code
-    game.human_codebreaker_turns
-    game.point_distribution_human
-        if game.victory_real
-            puts game.victory_text
-        elsif game.defeat_real
-             puts "Computer wins this time!"
-        end
-  elsif game.code_breaker == game.player2
-    game.human_master_code
-    game.computer_codebreaker_turns
-    game.computer_points_distribution
-        if game.victory_real
-            puts game.victory_text
-        elsif defeat_real
-            puts "Computer wins this time!"
-        end
+  binding.pry
+  until game.victory_real do
+   if game.code_breaker == game.player1
+      game.computer_master_code
+      game.human_codebreaker_turns
+      game.point_distribution_human
+      game.swap_status
+      game.swap_to_mastermind_text
+      game.reset_turns
+    elsif game.code_breaker == game.player2
+      game.human_master_code
+      game.computer_codebreaker_turns
+      game.computer_points_distribution
+      game.swap_status
+      game.swap_codebreaker_text
+      game.reset_turns
+    end
+    break if game.defeat_real
   end
   repeat
 end

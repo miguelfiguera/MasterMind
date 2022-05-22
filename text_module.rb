@@ -51,6 +51,19 @@ module Text
         puts "How should I call you?"
     end
 
+    def human_master_code_text
+        puts "Choose your secret Master code."
+        puts "(numbers input only)"
+    end
+
+    def swap_codebreaker_text
+        puts "Now you are the CodeBreaker!"
+    end
+
+    def swap_to_mastermind_text
+        puts "Now you are the MasterMind!"
+    end
+
     #Victory and Defeat
 
     def victory_text
