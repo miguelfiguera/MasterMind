@@ -1,15 +1,14 @@
 require_relative 'game'
 require_relative 'text_module'
-require "pry"
-
+require 'pry'
 
 def game
   game = Game.new
   game.game_prep
   game.creating_players
   binding.pry
-  until game.victory_real do
-   if game.code_breaker == game.player1
+  until game.victory_real
+    if game.code_breaker == game.player1
       game.computer_master_code
       game.human_codebreaker_turns
       game.point_distribution_human
